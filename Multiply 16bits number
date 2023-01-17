@@ -1,0 +1,89 @@
+FLOWCHART : 
+
+Start the program
+
+Using two different registers, load the MSBs of the data.
+
+Using two different registers, load the LSBs of the data.
+
+As a result, successive multiplications are performed.
+
+As a result of the registers being filled out, a product was obtained.
+
+In the registers, you can find the output of the program.
+
+End the program
+
+
+
+CODE : 
+ORG 0000H     ;Initialize LOCATION where Program Start 
+
+MOV R0,21H  ;LOCATION OF LSB1
+
+MOV R1,20H  ;LOCATION OF MSB1
+
+MOV R2,23H  ;LOCATION OF LSB2
+
+MOV R3,22H  ;LOCATION OF MSB2
+
+MOV A,R0 ; Move the data of R0 in Accumulator 
+
+MOV B,R2 ; Move the data of R2 in B
+
+MUL AB ; Multiply A and B the output also store in A and B ( eg . 12*34 = 03AB so A gets AB and B gets 03 be consider as a Carry ) 
+
+MOV 33H,A ;  Output of A store at location 33H
+
+MOV R4,B ;  Output of B (Carry )  store at R4
+
+MOV A,R1 ; Move the data of R1 in Accumulator 
+
+MOV B,R2 ; Move the data of R2 in B
+
+MUL AB  ; Multiply A and B the output also store in A and B ( eg . 12*34 = 03AB so A gets AB and B gets 03 be consider as a Carry ) 
+
+ADD A,R4 ; The output of A is add with the value of R4 (Carry of previous multiply )
+
+MOV R5,A ;  The addition previous result store in a R5
+
+MOV A,B ; Move the data of B in Accumulator 
+
+ADDC A,#00H ;  Add with Carry 00H
+
+MOV R6,A ; Move accumulator output at R6
+
+MOV A,R0 ; Move the data of R0 in Accumulator 
+
+MOV B,R3 ; Move the data of R3 in B
+
+MUL AB ; Multiply A and B the output also store in A and B ( eg . 12*34 = 03AB so A gets AB and B gets 03 be consider as a Carry ) 
+
+ADD A,R5 ; The output of A is add with the value of R4 
+
+MOV 32H,A ; Output of A store at location 32H
+
+MOV A,B ; Move the data of B in Accumulator 
+
+ADDC A,R6 ; Add withh carry with the data value of R6
+
+MOV R7,A ;  Move Accumulator data in R7
+
+MOV A,R1 ; Move the data of R1 in Accumulator 
+
+MOV B,R3 ; Move the data of R3 in B
+
+MUL AB ; Multiply A and B the output also store in A and B ( eg . 12*34 = 03AB so A gets AB and B gets 03 be consider as a Carry ) 
+
+ADD A,R7 ; The output of A is add with the value of R7
+
+MOV 31H,A ; Output of A store at location 31H
+
+MOV A,B ; Move the data of B in Accumulator 
+
+ADDC A,#00H ; Add with Carry 00H
+
+MOV 30H,A ; Output of A store at location 31H
+
+END ;End the program 
+
