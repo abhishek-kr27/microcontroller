@@ -1,0 +1,39 @@
+ DESCENDING ORDER 
+
+0000| MOV R4,#0AH    ; (n-1) outer counter 
+
+0002| AGAIN : MOV R3,#0AH  ;  inner counter 
+
+0004| MOV R0,#30H ; Initialize Address Location
+
+0006| CLR C ; Clear Carry Flag
+
+0007| UP : MOV A,@R0 ; Get the first data in A
+
+0008| MOV R1,A ;  Move to R1
+
+0009| INC R0 ; Increment the value of R0 
+
+000A| MOV A,@R0 ; Get the Second Data (Number)
+
+000B| SUBB A,R1 ; Subract A-R1
+
+000C| JC SKIP ; Jump if Carry onto SKIP labeling  ; if NOT then revert the number 
+
+000E| MOV A,@R0 ; move the content at location pointed by R0  in A 
+
+000F| DEC R0 ; Decrement the R0  
+
+0010| MOV @R0,A ; move the  content of A at location pointed by R0
+
+0011| MOV A,R1 ; move the content at location pointed by R1  in A 
+
+0012| INC R0 ;Increment the R0   
+
+0013| MOV @R0,A ; move the  content of A at location pointed by R0
+
+0014| SKIP : DJNZ R3,UP ; Get back to UP label (Decrement Inner Counter )
+
+0016| DJNZ R4,AGAIN ; Get back to Again label (Decrement Outer Counter )
+
+END
