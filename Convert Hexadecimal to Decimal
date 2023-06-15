@@ -1,0 +1,11 @@
+MOV A,#0FFH ; number which we want to convert 
+MOV B,#100
+DIV AB
+MOV 30H,A
+MOV A,B
+MOV B,#10
+DIV AB
+SWAP A
+ADD A ,B
+MOV 31H,A
+END 
