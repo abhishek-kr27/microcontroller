@@ -1,0 +1,10 @@
+MOV 30H,#00H
+MOV 31H,#00H
+MOV R0,#20H ; Set data pointer 
+BACK: MOV A,@R0
+RLC A
+JC ODD
+INC 30H ; if number is even than content of 30h is 1 else 0
+SJMP HERE
+ODD:  INC 31H ; if number is odd than content of 31h is 1 else 0
+HERE: SJMP HERE
